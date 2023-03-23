@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,21 +25,4 @@ use Illuminate\Support\Facades\Route;
 Route::view('/contact','home.contact');
 Route::view('/','home.index');
 
-
-Route::get('/articles/{id}', function($articleId){
-    $articles = [
-        1 =>[
-            'title' => 'Article 1',
-            'content' => 'Article 1 content'
-        ],
-        2 =>[
-            'title' => 'Article 2',
-            'content' => 'Article 2 content'
-        ]
-        ];
-    
-    abort_if(!isset($articles[$articleId]), 404);
-
-    return view('articles.show', $articles[$articleId]);
-});
-
+Route::resource('articles', ArticlesController::class)->only(['index','show']);
