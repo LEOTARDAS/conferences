@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ConferenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,19 @@ use App\Http\Controllers\ArticlesController;
 //    })->name('home.contact');
 
 Route::view('/contact','home.contact');
-Route::view('/','home.index');
+Route::get('/', [ConferenceController::class, 'index']);
+Route::get('/conferences/create', [ConferenceController::class, 'create'])->name('conferences.create');
+Route::post('/conferences', [ConferenceController::class, 'store'])->name('conferences.store');
+Route::get('/conferences', [ConferenceController::class, 'index'])->name('conference.index');
+Route::get('/conferences', [ConferenceController::class, 'index'])->name('conferences.index');
+Route::get('/conferences/{id}', [ConferenceController::class, 'show'])->name('conference.show');
+Route::get('/conferences/{id}/edit', [ConferenceController::class, 'edit'])->name('conferences.edit');
+Route::put('/conferences/{conference}', [ConferenceController::class, 'update'])->name('conference.update');
+Route::delete('/conferences/{id}', [ConferenceController::class, 'destroy'])->name('conferences.destroy');
 
-Route::resource('articles', ArticlesController::class)->only(['index','show']);
+Route::resource('articles', ArticlesController::class)->only(['create','show','index','store','edit','update']);
+
+Route::get('articles/create', [ArticlesController::class, 'create'])->name('articles.create');
+Route::post('articles/store', [ArticlesController::class, 'store'])->name('articles.store');
+
+

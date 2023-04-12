@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Http\Requests\StoreArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -24,7 +26,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('articles.index', ['articles' => $this->articles]);
+        $article = new Article(); 
+        return view('articles.index', ['articles' => $article->all()]);
     }
 
     /**
@@ -34,7 +37,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -43,9 +46,20 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $article = new Article();
+        //$article->title = $request->input('title');
+        //$article->content = $request->input('content');
+       // $article->save();
+
+        $articleItem = $article->create($validated);
+
+        $request->session()->flash('status','Article created!');
+
+        return redirect()->route('articles.show', ['article' => $articleItem->id]);
     }
 
     /**
@@ -56,20 +70,10 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $articles = [
-                    1 =>[
-                        'title' => 'Article 1',
-                        'content' => 'Article 1 content'
-                    ],
-                    2 =>[
-                        'title' => 'Article 2',
-                        'content' => 'Article 2 content'
-                    ]
-                    ];
-                
-                abort_if(!isset($articles[$id]), 404);
+        $article = Article::where('id','=',$id)->get()->first();
+            abort_if(!isset($article), 404);
             
-                return view('articles.show', ['article' => $articles[$id]]);
+            return view('articles.show', ['article' => $article]);
     }
 
     /**
