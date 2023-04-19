@@ -12,7 +12,7 @@ class ConferenceController extends Controller
         $conferences = Conference::all();
 
         if (auth()->check()) {
-            return view('conference.index-admin', compact('conferences'));
+            return view('conference.index', compact('conferences'));
         } else {
             return view('conference.index', compact('conferences'));
         }
@@ -33,7 +33,7 @@ class ConferenceController extends Controller
         $conference->location = $request->location;
         $conference->city = $request->city;
         $conference->save();
-        return redirect()->route('conference.index');
+        return redirect()->route('conferences.index');
     }
 
     public function edit($id)
@@ -62,7 +62,7 @@ class ConferenceController extends Controller
         $conference = Conference::findOrFail($id);
         $conference->delete();
         
-        return redirect()->route('conference.index');
+        return redirect()->route('conferences.index');
     }
 
     public function show($id)
