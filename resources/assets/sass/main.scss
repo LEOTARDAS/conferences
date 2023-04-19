@@ -1,0 +1,112 @@
+body {
+    background: radial-gradient(circle at top left,transparent 25%,#0040ff 25.5%, #0040ff 36%, transparent 37%, transparent 100%),radial-gradient(circle at bottom right,transparent 34%,#0040ff 34.5%, #0040ff 45.5%, transparent 46%, transparent 100%);
+    background-size: 6em 6em;
+    background-color: #ffffff;
+    opacity: 1;
+    background-position: center bottom;
+    animation: moveBackground 30s infinite;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @keyframes moveBackground {
+    0% {
+      background-position: center bottom;
+    }
+    100% {
+      background-position: center top;
+    }
+  }
+
+.container-main{
+        background-color: #86b4fa;
+        width: 30%;
+        margin: 0 auto;
+        text-align:center;
+        border-radius: 50px;
+        box-shadow: 2px 4px 4px rgba(0,0,0,0.4);
+        margin-top:50px;
+        padding: 50px 114px;
+        z-index: 10;   
+        display: grid;
+}
+
+.container-conf{
+    background-color:white;
+    border-radius: 10px;
+    margin-left:90px;
+    margin-right:90px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    box-shadow: 0px 0px 10px #000;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    font-weight:bolder;
+    font-size:xx-large;
+    transition: 0.3s;
+}
+
+a:hover{
+    font-size: 33px;
+    color:#7c6d6d;
+}
+
+button {
+    margin-top:50px;
+    background-color: #0040ff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0px 0px 10px #000;
+    transition: 0.3s;
+}
+button:hover{
+    background-color: #0076c7;
+}
+
+h1 {
+    color: #f2f2f2;
+    text-align: center;
+    font-size:43px;
+}
+
+h4{
+    color:lightgray;
+    font-family: 'Poppins', sans-serif;
+}
+
+p{
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #7c6d6d;
+}
+
+form {
+    display: inline-block;
+}
+
+#create-button {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+

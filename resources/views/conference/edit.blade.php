@@ -1,7 +1,9 @@
 @extends('layouts.app')
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 @section('content')
-    <div class="container">
-        <h1>Edit Conference</h1>
+    <div class="container-main">
+        <div class="container-conf">
+        <a href="#">Edit Conference</a>
         <form action="{{ route('conference.update', $conference->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -40,5 +42,7 @@
 
             <button type="submit" class="btn btn-primary">Update Conference</button>
         </form>
+        <a href="{{ route('conferences.index') }}"><button>Back</button></a>
+        </div>
     </div>
 @endsection

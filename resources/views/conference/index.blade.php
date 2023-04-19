@@ -1,6 +1,6 @@
 @extends('layouts.app')
-<link rel="stylesheet" href="{{ asset('css/main.style.css') }}">
 
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 @section('content')
 <div class="container-main">
     <h1>Conference List</h1>
@@ -13,16 +13,21 @@
                 <p>End Date: {{ $conference->end_time }}</p>
                 <p>Location: {{ $conference->location }}</p>
                 <p>City: {{ $conference->city }}</p>
+                    @guest
+                    @else
                     <a href="{{ route('conferences.edit', $conference->id) }}"><button>Edit</button></a>
                     <form action="{{ route('conferences.destroy', $conference->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button>
                     </form>
+                    @endguest
         </div>
         @endforeach
     </ul>
-
+        @guest
+        @else
         <a href="{{ route('conferences.create') }}"><button>Create Conference</button></a>
+        @endguest
 </div>
 @endsection

@@ -1,8 +1,9 @@
 @extends('layouts.app')
-
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 @section('content')
-<div class="container">
-    <h1>{{ $conference->title }}</h1>
+<div class="container-main">
+    <div class="container-conf">
+    <a href="#">{{ $conference->title }}</a>
     <p>{{ $conference->description }}</p>
     <p>Start Time: {{ $conference->start_time}}</p>
     <p>End Time: {{ $conference->end_time}}</p>
@@ -15,5 +16,6 @@
                         <button type="submit">Delete</button>
     </form>
     <a href="{{ route('conferences.index') }}"><button>Back</button></a>
+    </div>
 </div>
 @endsection
